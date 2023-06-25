@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Niramit&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mitr&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arsenal&family=Mitr&display=swap");
+
+.navbar-dark .navbar-toggler {
+  border-color: none !important;
+}
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+/*--------------------------------------------MAIN PAGE--------------------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  height: 620px;
+  text-align: center;
+}
+
+.intro-text {
+  background-color: transparent;
+  padding: 10px;
+  height: 620px;
+  flex: 30%;
+}
+.mainimg {
+  padding: 10px;
+  height: 620px;
+  flex: 70%;
+  background-image: url("./img1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+  .main {
+    flex-direction: column;
+  }
+  .intro-text {
+    height: 300px;
+  }
+  .smalltxt {
+    margin-top: -5px !important;
+    font-size: 25px !important;
+  }
+  .title {
+    font-size: 80px !important;
+    margin-top: -35px !important;
+  }
+  .buttoncontainer {
+    margin-top: -5px !important;
+  }
+  .landingbutton {
+    width: 100px !important;
+    height: 40px !important;
+    margin-right: 30px;
+  }
+}
+.smalltxt {
+  font-size: 25px;
+  font-family: "Mitr", sans-serif;
+  text-align: left;
+  margin-top: 150px;
+  margin-left: 5px;
+}
+.title {
+  font-size: 100px;
+  height: auto;
+  font-family: "Amaranth", sans-serif;
+  text-align: left;
+  margin-top: -55px;
+}
+.subtitle {
+  font-size: 27px;
+  text-align: left;
+  font-family: "Arsenal", sans-serif;
+  margin-top: -30px;
+  margin-left: 5px;
+}
+.landingbutton {
+  width: 150px;
+  height: 50px;
+  margin-right: 30px;
+}
+.buttoncontainer {
+  position: absolute;
+  margin-top: 30px;
+  margin-right: -30px;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+.color {
+  color: #8e8c84;
+}
+.mainback {
+  min-height: 85vh;
+  display: flex;
+  padding: 10px 0;
+}
+.page {
+  width: 100%;
+}
+.heading {
+  font-size: 58px;
+  padding: 5px 10px;
+}
+@media only screen and (max-width: 760) {
+  .heading {
+    font-size: 30px !important;
+    display: flex;
+    justify-content: center;
+  }
+}
+.profilePic {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.profileContainer {
+  display: flex;
+  margin: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .profileContainer {
+    flex-direction: column-reverse;
+  }
+}
+
+/*--------------------------------------------LOGIN PAGE----------------------------------------------*/
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  width: 630px;
+  height: 500px;
+  margin-top: -500px;
+  margin-left: 700px;
+  box-sizing: border-box;
+  padding: 100px 30px 0px 30px;
+}
+.loginimg {
+  background-image: url("./img2.jpg");
+  width: 700px;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+@media only screen and (max-width: 768px) {
+  .loginContainer {
+    width: 460px;
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+  .loginimg {
+    background-image: url("./img2.jpg");
+    width: 460px;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+/*--------------------------------------------REGISTER PAGE--------------------------------------------*/
+.regContainer {
+  display: flex;
+  flex-direction: column;
+  width: 630px;
+  height: 530px;
+  margin-top: -530px;
+  margin-left: 700px;
+  box-sizing: border-box;
+  padding: 30px 30px 30px 30px;
+}
+.regimg {
+  background-image: url("./img3.jpg");
+  width: 650px;
+  height: 530px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+@media only screen and (max-width: 768px) {
+  .regContainer {
+    width: 460px;
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+  .regimg {
+    background-image: url("./img3.jpg");
+    width: 460px;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}

@@ -1,0 +1,110 @@
+To run the project:
+- npm install (in the root directory)
+- npm start (to start the backend server)
+- cd frontend
+- npm install
+- npm start (tp start frontend server)
+
+
+
+To understand how the image is uploaded we have to understand the following:
+- Whenever the option of choosing or uploading an file is given, developer should handle the url of that file to render it.
+- The storage is not a concern most of the time for a front end developer.
+- Even so, the uploading an image is not only concerned about the url but also the storage of that file must be consideered.
+- For this 'storing of the image' cloud storage must be used. Since, it provides faster requests and reduces the loading time.
+- So now there are two tasks while uploading an image/file:
+	1. Upload the file to a cloud storage.
+	2. Retrive the new URL of the file from the cloud storage.
+- Understand that, before uploading the file path was local. To make the image available across all the users cloud storage is used and which provide us the new URL. Now, everytime the user wants to acces the image it will be served from the cloud storage.
+
+Here, CLOUDINARY is a very famous and fast cloud storage service that we are going to use.
+
+
+Navigate to the folowing directories as mentioned:
+1.frontend/Components/RegisterScreen.js
+
+- Here, You will find the registration form in which the upload file input is written:
+	<Form.Group>
+            <Form.Label>Profile Picture</Form.Label>
+            <Form.Control
+              onChange={(e) => postDetails(e.target.files[0])}
+              id="custom-file"
+              type="file"
+              label="Upload Profile Picture"
+              custom
+            />
+         </Form.Group>
+-Find the following function:
+  const postDetails = (pics) => {
+    if (!pics) {
+      return setPicMessage("Please Select An Image");
+    }
+    setPicMessage(null);
+
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "EverNote");
+      data.append("cloud_name", "djzk46bkv");
+      fetch("https://api.cloudinary.com/v1_1/djzk46bkv/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setPic(data.url, toString());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return setPicMessage("Please Select An Image");
+    }
+  };
+
+EXPLANATION
+
+The function begins by resetting the picMessage state variable to null. This state variable is used to display any error or success messages related to the profile picture.
+
+The function checks if the selected file's type is either "image/jpeg" or "image/png". This is done using the type property of the pics parameter, which represents the selected file.
+
+If the file type is valid (JPEG or PNG), the function continues to process the image. It creates a new instance of the FormData object named data.
+
+The selected file is appended to the data object using data.append("file", pics). This prepares the file to be sent as part of the form data in the subsequent request.
+
+Additional form data parameters are appended to the data object. These parameters include "upload_preset" (set to "notezipper") and "cloud_name" (set to "piyushproj"). These parameters are specific to the Cloudinary service, which is a cloud-based image and video management platform.
+
+A fetch request is made to the Cloudinary API endpoint at "https://api.cloudinary.com/v1_1/piyushproj/image/upload". This endpoint is used to upload the image file to the Cloudinary cloud storage.
+
+The fetch request is configured with the "post" method and the data object as the request body. This sends the prepared form data, including the selected image file, to the Cloudinary API.
+
+Once the response is received from the Cloudinary API, the function chain continues with the .then() method. The response is converted to JSON using res.json().
+
+In the subsequent .then() callback, the data object returned by the Cloudinary API is accessed. The response data contains the URL of the uploaded image. The URL is extracted from data.url and converted to a string.
+
+The extracted image URL is set to the pic state variable using the setPic function. This allows the URL to be stored in the component's state for further use or display.
+
+Finally, a console.log(pic) statement is executed to log the current value of the pic state variable. This may be useful for debugging purposes.
+
+If the selected file type is not valid (not JPEG or PNG), an error message is set by assigning the string "Please Select an Image" to the picMessage state variable using the setPicMessage function.
+
+- By now we have uploaded an image and retrieved the URL.
+- On submit of the form this URL is added in the post request payload and image is uploaded to the database along with the user details.
+
+
+
+
+HOW TO CREATE A NEW CLOUDINARY ACCOUNT AND STORAGE:
+Visit the Cloudinary website: Go to the Cloudinary website at https://cloudinary.com/.
+
+Sign up or log in: If you already have a Cloudinary account, log in using your credentials. Otherwise, click on the "Sign Up" button to create a new account.
+
+Create a new cloud: After signing in, you'll be taken to the Cloudinary dashboard. Click on the "Create New" button or navigate to the "Dashboard" dropdown menu and select "New Cloud."
+
+Configure your cloud: Provide a name for your new cloud and select any necessary options such as the storage region, plan, and features you want to enable. Click on the "Create" or "Continue" button to create your new cloud.
+
+Retrieve your cloud_name: Once your cloud is created, you will be redirected to the newly created cloud's dashboard. On this dashboard, you will find your cloud_name, which is a unique identifier for your cloud. Take note of this cloud_name as you'll need it to configure your application.
+
+Update your code: In your code, replace the placeholder value of "piyushproj" with your newly created cloud_name. For example, if your cloud_name is "mynewcloud", the line data.append("cloud_name", "piyushproj"); should be updated to data.append("cloud_name", "mynewcloud");.
+
